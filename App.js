@@ -35,17 +35,33 @@ app.post(
 
 
 app.get("/viewall",
-    (req,res)=>{
+    (req, res) => {
         facultymodel.find().then(
-            (data)=>{
+            (data) => {
                 res.json(data)
             }
         ).catch(
-            (error)=>{
+            (error) => {
                 res.json(error)
             }
         )
     }
+)
+
+
+app.post("/delete",
+     (req, res) => {
+    let input = req.body
+    facultymodel.findByIdAndDelete(input._id).then(
+        (response) => {
+            res.json({ "status": "success" })
+        }
+    ).catch(
+        (error) => {
+            res.json({"status":"error"})
+        }
+    )
+}
 )
 
 app.listen(8089, () => {
