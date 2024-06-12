@@ -33,6 +33,21 @@ app.post(
     }
 )
 
+
+app.get("/viewall",
+    (req,res)=>{
+        facultymodel.find().then(
+            (data)=>{
+                res.json(data)
+            }
+        ).catch(
+            (error)=>{
+                res.json(error)
+            }
+        )
+    }
+)
+
 app.listen(8089, () => {
     console.log("server started")
 })
